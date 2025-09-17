@@ -21,6 +21,8 @@ Este projeto foi criado por **Samuel de Sousa Santos** ([youtube.com/c/samucatut
 - **🔐 Segurança:** Proteja seu servidor com autenticação via chave de API (Bearer Token).
 - **⚙️ Totalmente Configurável:** Altere portas, chaves, vozes e outras configurações facilmente através de um arquivo `.env`.
 - **🇧🇷 Feito no Brasil:** Todo o código, comentários e documentação em português para facilitar o uso e a contribuição da comunidade.
+- **📚 Guia de Integração:** Quer usar no n8n? Siga nosso guia passo a passo para integrar a API em seus fluxos de trabalho.
+  [Clique aqui para ver o guia de integração com o n8n](https://github.com/samucamg/multivozes_br_engine/blob/main/N8N-INTEGRATION.md)
 
 ## ✨ A Cereja do Bolo: Integração com o Painel MultiVozes
 
@@ -52,7 +54,7 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
   ```
 - **Para CentOS/RHEL/AlmaLinux:**
   ```bash
-  sudo dnf install [https://rpms.remirepo.net/enterprise/remi-release-8.rpm](https://rpms.remirepo.net/enterprise/remi-release-8.rpm) -y
+  sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
   sudo dnf install --enablerepo=remi ffmpeg -y
   ```
 - **Para Windows:**
@@ -66,7 +68,7 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/samucamg/multivozes_br_engine.git](https://github.com/samucamg/multivozes_br_engine.git)
+    git clone https://github.com/samucamg/multivozes_br_engine.git
     cd multivozes_br_engine
     ```
 
