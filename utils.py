@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-Este módulo fornece funções utilitárias e constantes para a aplicação,
-como a leitura de variáveis de ambiente e configurações globais.
-"""
-
 import os
 from dotenv import load_dotenv
 from config import DEFAULT_CONFIGS
@@ -31,3 +24,4 @@ TIPOS_MIME_AUDIO = {
     "wav": "audio/wav",
     "pcm": "audio/L16"
 }
+
