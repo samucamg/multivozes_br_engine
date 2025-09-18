@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-Criado por: Samuel de Sousa Santos (youtube.com/c/samucatutoriais)
-Baseado no projeto de: travisvn/openai-edge-tts
-
-Este módulo é o coração da geração de áudio. Ele interage com a
-biblioteca edge-tts para converter texto em fala.
-"""
-
 import edge_tts
 import os
 import traceback
@@ -77,3 +67,4 @@ async def gerar_audio(texto: str, voz: str, formato_resposta: str, velocidade: f
 
     # Retorna o caminho do ficheiro de áudio gerado com sucesso
     return caminho_temp_audio
+
