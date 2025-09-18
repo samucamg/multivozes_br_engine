@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-Este ficheiro armazena o Guia de Uso da API com exemplos práticos
-em formato Markdown, dentro de uma string Python.
-"""
-
-usage_guide_content = """
 # 🚀 Guia de Uso da API e Exemplos
 
 Este guia mostra como interagir diretamente com a API do **Multivozes BR Engine** para gerar áudio a partir de texto. Vamos focar em exemplos práticos usando `curl`, uma ferramenta de linha de comando presente na maioria dos sistemas.
@@ -156,4 +148,5 @@ except requests.exceptions.RequestException as e:
 ```
 Este script faz o mesmo que o Exemplo 1, mas de forma programática dentro do Python.
 """
+
 
