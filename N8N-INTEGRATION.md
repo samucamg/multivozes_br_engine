@@ -1,14 +1,4 @@
-# -*- coding: utf-8 -*-
-
-"""
-Este script Python contém o conteúdo do guia de integração
-com o n8n em formato Markdown. O objetivo é facilitar a cópia
-e o uso do código-fonte para a documentação do projeto.
-"""
-
-from __future__ import annotations
-
-readme_content = """### 🚀 Guia de Integração com n8n
+### 🚀 Guia de Integração com n8n
 
 Este guia explica como integrar o **Multivozes BR Engine** ao n8n (versão `1.110.1`) de forma simples e direta, utilizando o nó nativo da OpenAI. O processo é rápido e permite que você use as vozes gratuitas da Microsoft em seus fluxos de trabalho.
 
@@ -77,7 +67,8 @@ A seguir, um exemplo visual da configuração no n8n para maior clareza.
 2.  O áudio gerado pelo Multivozes será retornado no campo de saída do nó da OpenAI, no formato de um buffer binário. Você pode então salvar este arquivo, enviá-lo por e-mail, ou usá-lo em outros nós do seu workflow.
 
 Com este guia, a integração com o n8n deve ser muito mais fácil e intuitiva. 🤩
-"""
+
 
 if __name__ == "__main__":
     print(readme_content)
+
