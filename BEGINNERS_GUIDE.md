@@ -95,8 +95,9 @@ A partir daqui, você está num ambiente Linux! 🎉 Os passos são **exatamente
 
 Com o ambiente preparado e as dependências instaladas, você está pronto para a parte final!
 
-Volte para o [`README.md` principal](https://github.com/samucamg/multivozes_br_engine/blob/main/README.md) e siga as seções **"Configurar suas variáveis de ambiente"** e **"Executando o Servidor"** para colocar o seu motor de voz para funcionar.
+Volte para o [`README.md` principal](README.md) e siga as seções **"Configurar suas variáveis de ambiente"** e **"Executando o Servidor"** para colocar o seu motor de voz para funcionar.
 
 Bom trabalho! 💪
 """
+
 
