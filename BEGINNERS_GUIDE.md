@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-Este ficheiro armazena o conteúdo do Guia de Instalação para Iniciantes
-em formato Markdown, dentro de uma string Python.
-"""
-
-guide_content = """
 # 📘 Guia de Instalação para Iniciantes - Multivozes BR Engine
 
 Olá! 👋 Bem-vindo ao Multivozes BR Engine! Este guia foi feito para você que está a começar e quer instalar o projeto passo a passo, sem complicações. Vamos explicar os conceitos básicos e mostrar como instalar em diferentes ambientes.
@@ -107,3 +99,4 @@ Volte para o [`README.md` principal](https://github.com/samucamg/multivozes_br_e
 
 Bom trabalho! 💪
 """
+
