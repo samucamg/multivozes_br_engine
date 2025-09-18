@@ -1,14 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-Criado por: Samuel de Sousa Santos (youtube.com/c/samucatutoriais)
-Baseado no projeto de: travisvn/openai-edge-tts
-
-Este módulo contém funções para pré-processar o texto de entrada,
-removendo formatação Markdown, emojis e outros artefatos que
-não devem ser pronunciados pelo motor de TTS.
-"""
-
 import re
 import emoji
 
@@ -56,3 +45,4 @@ def preparar_texto_para_tts(texto: str) -> str:
     texto = texto.strip()
 
     return texto
+
