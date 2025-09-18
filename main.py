@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-Criado por: Samuel de Sousa Santos (youtube.com/c/samucatutoriais)
-Baseado no projeto de: travisvn/openai-edge-tts
-
-Ponto de Entrada Principal (Main) para o Multivozes BR Engine.
-Este ficheiro inicializa o servidor FastAPI e define todas as rotas da API.
-"""
-
 import fastapi
 from fastapi import Request, HTTPException, BackgroundTasks, Depends
 from fastapi.responses import FileResponse
@@ -113,3 +103,4 @@ if __name__ == '__main__':
     print("=====================================================================")
     
     uvicorn.run(app, host='0.0.0.0', port=PORTA)
+
