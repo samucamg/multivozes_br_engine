@@ -1,27 +1,41 @@
-Multivozes BR Engine 🇧🇷
+# Multivozes BR Engine 🇧🇷
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Versão-1.0.0-blue?style=for-the-badge" alt="Versão">
-  <img src="https://img-shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python" alt="Python">
-  <img src="https://img.shields.com/github/license/samucamg/multivozes_br_engine?style=for-the-badge&color=green" alt="Licença">
-  <img src="https://img.shields.io/badge/Canal-Samuca_Tutoriais-red?style=for-the-badge&logo=youtube" alt="Canal Samuca Tutoriais">
+  <img src="https://img.shields.io/badge/Versão-1.1.0_Estável-blue?style=for-the-badge" alt="Versão">
+  <img src="https://img.shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge" alt="Licença">
+  <img src="https://img.shields.io/badge/Canal-Samuca_Tutoriais-red?style=for-the-badge&logo=youtube" alt="Canal Samuca Tutoriais">
 </p>
 
 Uma API de TTS (Text-to-Speech) auto-hospedada, 100% compatível com a OpenAI, que utiliza as vozes neurais de alta qualidade e gratuitas da Microsoft Edge. Rápida, eficiente e feita para a comunidade brasileira.
 
 Este projeto foi criado por **Samuel de Sousa Santos** ([youtube.com/c/samucatutoriais](https://youtube.com/c/samucatutoriais)) e é baseado no excelente trabalho de [travisvn/openai-edge-tts](https://github.com/travisvn/openai-edge-tts).
 
+## ⚠️ Nota Importante sobre Versões
+
+Este projeto foi estabilizado com versões específicas das bibliotecas listadas no `requirements.txt`, especialmente a **`edge-tts==6.1.10`**. Versões mais recentes desta biblioteca apresentaram incompatibilidades que podem causar erros no servidor.
+
+Para garantir o funcionamento correto, é **crucial** instalar as dependências usando o ficheiro `requirements.txt` fornecido, sem alterá-lo.
+
 ## 🚀 Principais Funcionalidades
 
-- **✅ 100% Compatível com a API OpenAI:** Substitua o endpoint `api.openai.com` pelo seu e nada mais precisa ser alterado. Perfeito para integrações com n8n, Make, e outros sistemas.
-- **⚡ Performance Otimizada:** A geração de áudio ocorre em um processo assíncrono e utiliza um arquivo temporário, garantindo estabilidade e respostas rápidas mesmo com múltiplas requisições.
-- **🧠 Filtro de Texto Inteligente:** Remove automaticamente emojis e formatação Markdown do texto de entrada, evitando que a IA "leia" caracteres indesejados e garantindo um áudio limpo.
-- **🎵 Suporte a Múltiplos Formatos:** Gere áudio nos formatos `mp3`, `opus`, `aac`, `flac`, `wav` e `pcm` (requer FFmpeg).
-- **🗣️ Seleção de Voz Flexível:** Use os nomes de voz padrão da OpenAI (`alloy`, `shimmer`, etc.) ou escolha diretamente qualquer uma das centenas de vozes do Edge-TTS (ex: `pt-BR-FranciscaNeural`).
-- **🔐 Segurança:** Proteja seu servidor com autenticação via chave de API (Bearer Token).
-- **⚙️ Totalmente Configurável:** Altere portas, chaves, vozes e outras configurações facilmente através de um arquivo `.env`.
-- **🇧🇷 Feito no Brasil:** Todo o código, comentários e documentação em português para facilitar o uso e a contribuição da comunidade.
-- **📚 Guia de Integração:** Quer usar no n8n? Siga nosso guia passo a passo para integrar a API em seus fluxos de trabalho.
+* **✅ 100% Compatível com a API OpenAI:** Substitua o endpoint `api.openai.com` pelo seu e nada mais precisa ser alterado. Perfeito para integrações com n8n, Make, e outros sistemas.
+
+* **⚡ Estabilidade Garantida:** A geração de áudio ocorre em um processo assíncrono e utiliza um arquivo temporário, garantindo estabilidade e respostas rápidas mesmo com múltiplas requisições.
+
+* **🧠 Filtro de Texto Inteligente:** Remove automaticamente emojis e formatação Markdown do texto de entrada, evitando que a IA "leia" caracteres indesejados e garantindo um áudio limpo.
+
+* **🎵 Suporte a Múltiplos Formatos:** Gere áudio nos formatos `mp3`, `opus`, `aac`, `flac`, `wav` e `pcm`.
+
+* **🗣️ Seleção de Voz Flexível:** Use os nomes de voz padrão da OpenAI (`alloy`, `shimmer`, etc.) ou escolha diretamente qualquer uma das centenas de vozes do Edge-TTS (ex: `pt-BR-FranciscaNeural`).
+
+* **🔐 Segurança:** Proteja seu servidor com autenticação via chave de API (Bearer Token).
+
+* **⚙️ Totalmente Configurável:** Altere portas, chaves, vozes e outras configurações facilmente através de um arquivo `.env`.
+
+* **🇧🇷 Feito no Brasil:** Todo o código, comentários e documentação em português para facilitar o uso e a contribuição da comunidade.
+
+* **📚 Guia de Integração:** Quer usar no n8n? Siga nosso guia passo a passo para integrar a API em seus fluxos de trabalho.
   [Clique aqui para ver o guia de integração com o n8n](https://github.com/samucamg/multivozes_br_engine/blob/main/N8N-INTEGRATION.md)
 
 ## ✨ A Cereja do Bolo: Integração com o Painel MultiVozes
@@ -29,7 +43,7 @@ Este projeto foi criado por **Samuel de Sousa Santos** ([youtube.com/c/samucatut
 O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Painel MultiVozes](https://github.com/samucamg/multivozes), transformando uma simples API em uma plataforma de produção de áudio completa e profissional.
 
 | Funcionalidade | Usar a API Sozinha | Aliança MultiVozes + Engine |
-| :--- | :---: | :---: |
+| --- | :---: | :---: |
 | Vozes de Alta Qualidade | ✓ | ✓ |
 | Geração Rápida e Gratuita | ✓ | ✓ |
 | **Gestão de Múltiplos Usuários** | ❌ | ✓ |
@@ -38,13 +52,28 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
 | **Histórico de Áudios Pessoal** | ❌ | ✓ |
 | **Painel de Administração** | ❌ | ✓ |
 
----
-
 ## 📋 Pré-requisitos
 
-- **Python 3.8 ou superior**
-- **FFmpeg** (Obrigatório para conversão de formatos de áudio)
-- Git (para clonar o repositório)
+* **Python 3.8 ou superior**
+* **FFmpeg** (Opcional, mas necessário para converter para formatos diferentes de MP3)
+* Git (para clonar o repositório)
+
+#### ⚙️ Requisitos de Servidor Recomendados
+
+Para uma boa performance do **Multivozes BR Engine**, recomendamos um servidor (VPS) com as seguintes especificações mínimas:
+
+* **CPU:** 2 vCores
+* **RAM:** 4 GB
+* **Disco:** 20 GB de espaço livre
+
+O projeto foi testado e funciona perfeitamente nos seguintes sistemas operacionais (64 bits):
+* **Linux:**
+    * Ubuntu 22.04 / 24.04 LTS
+    * Debian 11 / 12
+    * AlmaLinux 8 / 9
+    * Sistemas ARM64 com Ubuntu (ex: Oracle Cloud)
+* **Windows:**
+    * Windows 10 / 11, utilizando WSL2 com Ubuntu 22.04 ou 24.04
 
 ### Instalando o FFmpeg
 
@@ -54,7 +83,7 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
   ```
 - **Para CentOS/RHEL/AlmaLinux:**
   ```bash
-  sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+  sudo dnf install [https://rpms.remirepo.net/enterprise/remi-release-8.rpm](https://rpms.remirepo.net/enterprise/remi-release-8.rpm) -y
   sudo dnf install --enablerepo=remi ffmpeg -y
   ```
 - **Para Windows:**
@@ -62,13 +91,12 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
   2. Descompacte o arquivo (ex: `C:\\ffmpeg`).
   3. Adicione a pasta `bin` (ex: `C:\\ffmpeg\\bin`) à variável de ambiente `Path` do seu sistema.
 
----
-
 ## 🛠️ Guia de Instalação
+*Para um guia mais detalhado, focado em iniciantes e cobrindo a instalação em VPS, Windows e WSL2, consulte o nosso [**Guia de Instalação para Iniciantes**](BEGINNERS_GUIDE.md)!*
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/samucamg/multivozes_br_engine.git
+    git clone [https://github.com/samucamg/multivozes_br_engine.git](https://github.com/samucamg/multivozes_br_engine.git)
     cd multivozes_br_engine
     ```
 
@@ -83,7 +111,7 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
     .\\venv\\Scripts\\activate
     ```
 
-3.  **Instale as dependências:**
+3.  **Instale as dependências EXATAS:**
     ```bash
     pip install -r requirements.txt
     ```
@@ -99,19 +127,13 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
     DEFAULT_VOICE=pt-BR-FranciscaNeural
     ```
 
----
-
 ## ▶️ Executando o Servidor
 
 Com o ambiente virtual ativado, inicie o servidor com o comando:
-
 ```bash
 python main.py
 ```
-
 Você deverá ver uma mensagem indicando que o servidor está rodando na porta especificada. O endpoint principal estará disponível em `http://localhost:5050/v1/audio/speech`.
-
----
 
 ## ⚙️ Deploy como Serviço (Autostart)
 
@@ -119,19 +141,22 @@ Para rodar o servidor em produção de forma contínua, é recomendado configur�
 
 ### Linux (systemd)
 
-1.  Copie o conteúdo do arquivo `multivozes_br_engine.service` que acompanha este projeto.
-2.  Crie o arquivo de serviço no seu servidor:
-    ```bash
-    sudo nano /etc/systemd/system/multivozes_br_engine.service
-    ```
-3.  Cole o conteúdo e **edite os campos obrigatórios** (`User`, `WorkingDirectory`, `ExecStart`) com os seus dados.
-4.  Recarregue o daemon do systemd, habilite e inicie o serviço:
-    ```bash
-    sudo systemctl daemon-reload
-    sudo systemctl enable multivozes_br_engine
-    sudo systemctl start multivozes_br_engine
-    sudo systemctl status multivozes_br_engine
-    ```
+1. Use o ficheiro `multivozes_br_engine.service` que acompanha o projeto.
+2. Copie o ficheiro para o diretório de serviços do systemd:
+   ```bash
+   sudo cp multivozes_br_engine.service /etc/systemd/system/
+   ```
+3. **Edite o ficheiro copiado** e ajuste os campos `User` e `WorkingDirectory` para corresponder ao seu ambiente.
+   ```bash
+   sudo nano /etc/systemd/system/multivozes_br_engine.service
+   ```
+4. Recarregue o daemon, habilite e inicie o serviço:
+   ```bash
+   sudo systemctl daemon-reload
+   sudo systemctl enable multivozes_br_engine
+   sudo systemctl start multivozes_br_engine
+   sudo systemctl status multivozes_br_engine
+   ```
 
 ### Windows (NSSM)
 
@@ -148,104 +173,41 @@ A forma mais robusta de criar um serviço no Windows é usando o [NSSM (Non-Suck
     - **Arguments:** `main.py`
 4.  Clique em "Install service" e inicie o serviço pelo painel de Serviços do Windows (`services.msc`).
 
----
-
 ## 🎤 Referência de Vozes
 
-### Mapeamento de Vozes OpenAI (Recomendado)
+### Mapeamento de Vozes OpenAI (Padrão)
+Esta tabela reflete o mapeamento de vozes configurado no código.
 
-| Nome OpenAI | Voz Edge-TTS Mapeada | Gênero |
-| :--- | :--- | :--- |
-| `alloy` | `en-US-JennyNeural` | Feminino (EUA) |
-| `echo` | `en-US-GuyNeural` | Masculino (EUA) |
-| `fable` | `en-GB-SoniaNeural` | Feminino (Britânico) |
-| `onyx` | `en-US-EricNeural` | Masculino (EUA) |
-| `nova` | `en-US-AvaNeural` | Feminino (EUA) |
-| `shimmer`| `en-US-EmmaNeural` | Feminino (EUA) |
+| Nome OpenAI | Voz Edge-TTS Mapeada | Gênero e Idioma |
+| --- | :--- | :--- |
+| `alloy` | `pt-BR-FranciscaNeural` | Feminino (PT-BR) |
+| `echo` | `pt-BR-AntonioNeural` | Masculino (PT-BR) |
+| `fable` | `en-US-RogerNeural` | Masculino (Inglês EUA) |
+| `onyx` | `en-US-EricNeural` | Masculino (Inglês EUA) |
+| `nova` | `en-US-AvaNeural` | Feminino (Inglês EUA) |
+| `shimmer`| `en-US-EmmaNeural` | Feminino (Inglês EUA) |
 
----
-
-### Multilinguais e Outras Vozes
-
-#### Multilinguais (EN e DE/FR)
-
-| Voz (Nome Técnico) | Descrição | Gênero |
-| :--- | :--- | :--- |
-| `en-US-AndrewMultilingualNeural` | Andrew (Masc - Multilingue EN) | Masculino |
-| `en-US-AvaMultilingualNeural` | Ava (Fem - Multilingue EN) | Feminino |
-| `en-US-BrianMultilingualNeural` | Brian (Masc - Multilingue EN) | Masculino |
-| `en-US-EmmaMultilingualNeural` | Emma (Fem - Multilingue EN) | Feminino |
-| `de-DE-FlorianMultilingualNeural` | Florian (Masc - Multilingue Alemão) | Masculino |
-| `de-DE-SeraphinaMultilingualNeural` | Seraphina (Fem - Multilingue Alemão) | Feminino |
-| `fr-FR-RemyMultilingualNeural` | Remy (Masc - Multilingue Francês) | Masculino |
-| `fr-FR-VivienneMultilingualNeural` | Vivienne (Fem - Multilingue Francês) | Feminino |
+### Outras Vozes Disponíveis (Exemplos)
 
 #### Português (Brasil)
+| Voz (Nome Técnico) | Gênero |
+| --- | :--- |
+| `pt-BR-AntonioNeural` | Masculino |
+| `pt-BR-FranciscaNeural`| Feminino |
+| `pt-BR-ThalitaNeural` | Feminino |
 
-| Voz (Nome Técnico) | Descrição | Gênero |
-| :--- | :--- | :--- |
-| `pt-BR-AntonioNeural` | Antonio (PT-BR) | Masculino |
-| `pt-BR-FranciscaNeural` | Francisca (PT-BR) | Feminino |
-| `pt-BR-ThalitaNeural` | Thalita (PT-BR) | Feminino |
-
-#### Inglês (US e Outros)
-
-| Voz (Nome Técnico) | Descrição | Gênero |
-| :--- | :--- | :--- |
-| `en-US-AndrewNeural` | Andrew (Masc - Inglês US) | Masculino |
-| `en-US-AnaNeural` | Ana (Fem - Inglês US) | Feminino |
-| `en-AU-NatashaNeural` | Natasha (Fem - Inglês Austrália) | Feminino |
-| `en-AU-WilliamNeural` | William (Masc - Inglês Austrália) | Masculino |
-| `en-CA-ClaraNeural` | Clara (Fem - Inglês Canadá) | Feminino |
-| `en-CA-LiamNeural` | Liam (Masc - Inglês Canadá) | Masculino |
-| `en-GB-LibbyNeural` | Libby (Fem - Inglês Britânico) | Feminino |
-| `en-GB-MaisieNeural` | Maisie (Criança - Inglês Brit) | Feminino |
-| `en-GB-RyanNeural` | Ryan (Masc - Inglês Britânico) | Masculino |
-| `en-GB-SoniaNeural` | Sonia (Fem - Inglês Britânico) | Feminino |
-| `en-GB-ThomasNeural` | Thomas (Masc - Inglês Britânico) | Masculino |
-| `en-HK-SamNeural` | Sam (Masc - Inglês Hong Kong) | Masculino |
-| `en-HK-YanNeural` | Yan (Fem - Inglês Hong Kong) | Feminino |
-| `en-IE-ConnorNeural` | Connor (Masc - Inglês Irlandês) | Masculino |
-| `en-IE-EmilyNeural` | Emily (Fem - Inglês Irlandês) | Feminino |
-| `en-IN-NeerjaExpressiveNeural` | Priya (Fem - Inglês Indiano Exp) | Feminino |
-| `en-IN-NeerjaNeural` | Neerja (Fem - Inglês Indiano) | Feminino |
-| `en-IN-PrabhatNeural` | Prabhat (Masc - Inglês Indiano) | Masculino |
-| `en-KE-AsiliaNeural` | Asilia (Fem - Inglês Quênia) | Feminino |
-| `en-KE-ChilembaNeural` | Chilemba (Masc - Inglês Quênia) | Masculino |
-| `en-NG-AbeoNeural` | Abeo (Masc - Inglês Nigéria) | Masculino |
-| `en-NG-EzinneNeural` | Ezinne (Fem - Inglês Nigéria) | Feminino |
-| `en-NZ-MitchellNeural` | Mitchell (Masc - Inglês Nova Zelândia) | Masculino |
-| `en-NZ-MollyNeural` | Molly (Fem - Inglês Nova Zelândia) | Feminino |
-| `en-PH-JamesNeural` | James (Masc - Inglês Filipina) | Masculino |
-| `en-PH-RosaNeural` | Rosa (Fem - Inglês Filipina) | Feminino |
-| `en-SG-LunaNeural` | Luna (Fem - Inglês Singapura) | Feminino |
-| `en-SG-WayneNeural` | Wayne (Masc - Inglês Singapura) | Masculino |
-| `en-TZ-ElimuNeural` | Elimu (Masc - Inglês Tanzânia) | Masculino |
-| `en-TZ-ImaniNeural` | Imani (Fem - Inglês Tanzânia) | Feminino |
-| `en-US-AriaNeural` | Aria (Fem - Inglês US) | Feminino |
-| `en-US-AvaNeural` | Ava (Fem - Inglês US) | Feminino |
-| `en-US-ChristopherNeural` | Christopher (Masc - Inglês US) | Masculino |
-| `en-US-EmmaNeural` | Emma (Fem - Inglês US) | Feminino |
-| `en-US-EricNeural` | Eric (Masc - Inglês US) | Masculino |
-| `en-US-GuyNeural` | Guy (Masc - Inglês US) | Masculino |
-| `en-US-JennyNeural` | Jenny (Fem - Inglês US) | Feminino |
-| `en-US-MichelleNeural` | Michelle (Fem - Inglês US) | Feminino |
-| `en-US-RogerNeural` | Roger (Masc - Inglês US) | Masculino |
-| `en-US-SteffanNeural` | Steffan (Masc - Inglês US) | Masculino |
-| `en-ZA-LeahNeural` | Leah (Fem - Inglês Africano) | Feminino |
-| `en-ZA-LukeNeural` | Luke (Masc - Inglês Africano) | Masculino |
-
----
+#### Inglês (US)
+| Voz (Nome Técnico) | Gênero |
+| --- | :--- |
+| `en-US-AriaNeural` | Feminino |
+| `en-US-GuyNeural` | Masculino |
+| `en-US-JennyNeural` | Feminino |
 
 ## 📄 Licença e Suporte
 
-Este projeto é distribuído gratuitamente sob a licença MIT, o que significa que você tem total liberdade para usar, modificar e distribuir o código.
+Este projeto é distribuído gratuitamente sob a licença MIT. Ele foi testado e está funcional em **Ubuntu 22.04**, **AlmaLinux 9** e **Windows 10/11 com WSL2**.
 
-Ele foi testado e está funcional em ambientes como **Ubuntu 22.04 (64-bit)** e **Windows 10 com WSL2**. No entanto, devido à natureza do software livre, **não oferecemos garantias de funcionamento** em todos os ambientes e configurações. A comunidade é o nosso maior motor, mas o suporte oficial do desenvolvedor não está incluso na licença.
+Devido à natureza do software livre, **não oferecemos garantias de funcionamento** em todos os ambientes e configurações. Para questões complexas, resolução de bugs ou consultoria técnica, os serviços do desenvolvedor **podem ser contratados**.
 
-Para questões mais complexas, como a resolução de bugs, implementação de novas funcionalidades, ou consultoria técnica detalhada para o seu projeto, os serviços do desenvolvedor **podem ser contratados**.
-
-Para orçamentos ou para agendar uma consultoria, entre em contato via WhatsApp: **33999928964**.
-
-O desenvolvedor não atende, não tira dúvidas, nem resolve problemas via outros canais sem a contratação de uma consultoria ou hora técnica.
+Contato para consultoria via WhatsApp: **33999928964**.
 

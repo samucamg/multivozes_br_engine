@@ -1,0 +1,22 @@
+-- coding: utf-8 --
+"""
+Criado por: Samuel de Sousa Santos (youtube.com/c/samucatutoriais)
+Baseado no projeto de: travisvn/openai-edge-tts
+"""
+
+[Unit]
+Description=Serviço para o Multivozes BR Engine
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/opt/tts
+Environment="VIRTUAL_ENV=/opt/tts/venv"
+ExecStartPre=-/bin/bash -c '[[ -d venv ]] || python3 -m venv venv'
+ExecStart=/bin/bash -c 'source venv/bin/activate && python3 main.py'
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
