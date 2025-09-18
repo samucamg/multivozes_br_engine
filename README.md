@@ -36,7 +36,7 @@ Para garantir o funcionamento correto, é **crucial** instalar as dependências 
 * **🇧🇷 Feito no Brasil:** Todo o código, comentários e documentação em português para facilitar o uso e a contribuição da comunidade.
 
 * **📚 Guia de Integração:** Quer usar no n8n? Siga nosso guia passo a passo para integrar a API em seus fluxos de trabalho.
-  [Clique aqui para ver o guia de integração com o n8n](https://github.com/samucamg/multivozes_br_engine/blob/main/N8N-INTEGRATION.md)
+  [**Conheça o Guia de Integração com o n8n**](N8N-INTEGRATION.md)
 
 ## ✨ A Cereja do Bolo: Integração com o Painel MultiVozes
 
@@ -51,6 +51,14 @@ O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Paine
 | **Interface Visual para Diálogos**| ❌ | ✓ |
 | **Histórico de Áudios Pessoal** | ❌ | ✓ |
 | **Painel de Administração** | ❌ | ✓ |
+
+## 📚 Documentação Completa
+
+Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
+
+* [**Guia de Instalação para Iniciantes**](BEGINNERS_GUIDE.md): Passo a passo para instalar o projeto em VPS, Windows e WSL2.
+* [**Guia de Uso da API e Exemplos**](API_USAGE_GUIDE.md): Aprenda a usar a API com exemplos práticos em `curl` e Python.
+* [**Guia de Integração com o n8n**](N8N-INTEGRATION.md): Conecte o Multivozes aos seus fluxos de trabalho no n8n.
 
 ## 📋 Pré-requisitos
 
