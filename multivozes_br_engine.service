@@ -1,20 +1,51 @@
--- coding: utf-8 --
-"""
-Criado por: Samuel de Sousa Santos (youtube.com/c/samucatutoriais)
-Baseado no projeto de: travisvn/openai-edge-tts
-"""
+# ==============================================================================
+#           Ficheiro de Serviço Systemd para o Multivozes BR Engine
+# ==============================================================================
+# Para usar:
+# 1. Copie o conteúdo abaixo (sem os comentários, se preferir) para um novo
+#    ficheiro no seu servidor, por exemplo:
+#    sudo nano /etc/systemd/system/multivozes_br_engine.service
+#
+# 2. ALTERE as linhas marcadas com "==> ALTERE AQUI" para corresponderem
+#    ao seu ambiente.
+#
+# 3. Salve, saia e execute os seguintes comandos para ativar o serviço:
+#    sudo systemctl daemon-reload
+#    sudo systemctl enable multivozes_br_engine
+#    sudo systemctl start multivozes_br_engine
+# ==============================================================================
 
 [Unit]
+
 Description=Serviço para o Multivozes BR Engine
 After=network.target
 
 [Service]
+# User: O usuário do sistema que irá executar o serviço. É uma boa prática de segurança
+# criar um usuário dedicado em vez de usar 'root'.
+# ==> ALTERE AQUI se você criou um usuário específico (ex: 'samuca').
 User=root
+
+# Group: O grupo do usuário. Geralmente é o mesmo nome do usuário.
+# ==> ALTERE AQUI para o grupo do seu usuário (ex: 'samuca').
 Group=root
+
+# WorkingDirectory: O caminho completo para a pasta raiz do seu projeto.
+# O serviço será executado a partir deste diretório.
+# ==> ALTERE AQUI para o caminho onde você clonou o projeto.
+# Exemplo: /home/samuca/multivozes_br_engine
 WorkingDirectory=/opt/tts
+
+# Environment: Define variáveis de ambiente para o serviço. Aqui, garantimos que
+# ele use o ambiente virtual (venv) correto, que deve estar dentro do seu WorkingDirectory.
+# ==> ALTERE AQUI apenas se a sua pasta venv tiver um nome diferente.
 Environment="VIRTUAL_ENV=/opt/tts/venv"
-ExecStartPre=-/bin/bash -c '[[ -d venv ]] || python3 -m venv venv'
+
+# ExecStart: O comando principal que inicia a sua aplicação.
+# Ele primeiro ativa o ambiente virtual e depois executa o 'main.py' com o Python
+# que está dentro do ambiente virtual.
 ExecStart=/bin/bash -c 'source venv/bin/activate && python3 main.py'
+
 Restart=always
 RestartSec=10
 
