@@ -16,12 +16,12 @@ PROXY = os.getenv("PROXY", None)
 # --- Mapeamento e Dados de Vozes ---
 # Mapeamento de vozes padrão da OpenAI para as vozes do Edge-TTS
 MAPEAMENTO_VOZES = {
-    'alloy': 'pt-BR-FranciscaNeural',
-    'echo': 'pt-BR-AntonioNeural',
-    'fable': 'en-US-RogerNeural',
-    'onyx': 'en-US-EricNeural',
-    'nova': 'en-US-AvaNeural',
-    'shimmer': 'en-US-EmmaNeural',
+    'alloy': 'en-US-AndrewMultilingualNeural',
+    'echo': 'en-US-BrianMultilingualNeural',
+    'fable': 'de-DE-SeraphinaMultilingualNeural',
+    'onyx': 'de-DE-FlorianMultilingualNeural',
+    'nova': 'en-US-EmmaMultilingualNeural',
+    'shimmer': 'en-US-AvaMultilingualNeural',
 }
 
 # Dados dos modelos para compatibilidade com a API OpenAI
@@ -67,4 +67,5 @@ async def gerar_audio(texto: str, voz: str, formato_resposta: str, velocidade: f
 
     # Retorna o caminho do ficheiro de áudio gerado com sucesso
     return caminho_temp_audio
+
 
