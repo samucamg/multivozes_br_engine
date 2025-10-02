@@ -20,7 +20,7 @@
 
 Uma API de TTS (Text-to-Speech) auto-hospedada, 100% compatível com a OpenAI, que utiliza as vozes neurais de alta qualidade e gratuitas da Microsoft Edge. Agora com **suporte a vozes multilinguais**, configuração simplificada e conversão real de formatos de áudio.
 
-Este projeto foi criado por **Samuel de Sousa Santos** e é baseado no excelente trabalho de **[travisvn/openai-edge-tts]**.
+Este projeto foi criado por **Samuel de Sousa Santos** e é baseado no excelente trabalho de [travisvn/openai-edge-tts](https://github.com/travisvn/openai-edge-tts).
 
 ---
 
@@ -64,6 +64,7 @@ Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
 * [**Guia de Instalação para Iniciantes**](BEGINNERS_GUIDE.md)
 * [**Guia de Uso da API e Exemplos**](API_USAGE_GUIDE.md)
 * [**Guia de Integração com o n8n**](N8N-INTEGRATION.md)
+* [**Guia de Vozes Disponíveis**](VOICES.md)
 * [**Histórico de Versões (Changelog)**](CHANGELOG.md)
 
 ## 📋 Pré-requisitos
@@ -76,7 +77,7 @@ Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/samucamg/multivozes_br_engine.git
+    git clone [https://github.com/samucamg/multivozes_br_engine.git](https://github.com/samucamg/multivozes_br_engine.git)
     cd multivozes_br_engine
     ```
 2.  **Crie e ative um ambiente virtual:**
@@ -98,9 +99,10 @@ Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
     ```
 
 ## ▶️ Executando o Servidor
-  
-Com o ambiente virtual ativado, inicie o servidor com:
+
 Com o ambiente virtual ativado, inicie o servidor com:
 ```bash
 python main.py
+
+
 
