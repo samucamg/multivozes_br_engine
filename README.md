@@ -9,7 +9,7 @@
 
 Uma API de TTS (Text-to-Speech) auto-hospedada, 100% compatível com a OpenAI, que utiliza as vozes neurais de alta qualidade e gratuitas da Microsoft Edge. Rápida, eficiente e feita para a comunidade brasileira.
 
-Este projeto foi criado por **Samuel de Sousa Santos** ([youtube.com/c/samucatutoriais](https://youtube.com/c/samucatutoriais)) e é baseado no excelente trabalho de [travisvn/openai-edge-tts](https://github.com/travisvn/openai-edge-tts).
+Este projeto foi criado por **Samuel de Sousa Santos** ([youtube.com/c/samucatutoriais](https://youtube.com/c/samucatutoriais)) e é baseado no excelente trabalho de **[travisvn/openai-edge-tts]**.
 
 ## ⚠️ Nota Importante sobre Versões
 
@@ -30,7 +30,7 @@ Para garantir o funcionamento correto, é **crucial** instalar as dependências 
 
 ## ✨ A Cereja do Bolo: Integração com o Painel MultiVozes
 
-O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Painel MultiVozes](https://github.com/samucamg/multivozes), transformando uma simples API em uma plataforma de produção de áudio completa e profissional.
+O **Multivozes BR Engine** foi projetado para ser o motor perfeito para o [Painel MultiVozes](https://multivozes.com/), transformando uma simples API em uma plataforma de produção de áudio completa e profissional.
 
 | Funcionalidade | Usar a API Sozinha | Aliança MultiVozes + Engine |
 | :--- | :---: | :---: |
@@ -83,12 +83,12 @@ Com o ambiente virtual ativado, inicie com: `python main.py`
 ### Mapeamento de Vozes OpenAI (Padrão)
 | Nome OpenAI | Voz Edge-TTS Mapeada | Gênero e Idioma |
 | :--- | :--- | :--- |
-| `alloy` | `pt-BR-FranciscaNeural` | Feminino (PT-BR) |
-| `echo` | `pt-BR-AntonioNeural` | Masculino (PT-BR) |
-| `fable` | `en-US-RogerNeural` | Masculino (Inglês EUA) |
-| `onyx` | `en-US-EricNeural` | Masculino (Inglês EUA) |
-| `nova` | `en-US-AvaNeural` | Feminino (Inglês EUA) |
-| `shimmer`| `en-US-EmmaNeural` | Feminino (Inglês EUA) |
+| `alloy` | `en-US-AndrewMultilingualNeural` | Masculino Multilíngue |
+| `echo` | `en-US-BrianMultilingualNeural` | Masculino Multilíngue |
+| `fable` | `de-DE-SeraphinaMultilingualNeural` | Feminino Multilíngue |
+| `onyx` | `de-DE-FlorianMultilingualNeural` | Masculino Multilíngue |
+| `nova` | `en-US-EmmaMultilingualNeural` | Feminino Multilíngue |
+| `shimmer`| `en-US-AvaMultilingualNeural` | Feminino Multilíngue |
 
 ### Outras Vozes Disponíveis (Lista Completa)
 
@@ -138,5 +138,6 @@ O software é fornecido sem qualquer tipo de suporte gratuito por parte do desen
 
 * **O desenvolvedor não oferece suporte gratuito, não responde a dúvidas técnicas nem auxilia na resolução de problemas através do WhatsApp ou qualquer outro canal.**
 * Qualquer tipo de ajuda, incluindo depuração de erros, consultoria para integrações ou implementação de funcionalidades personalizadas, **requer a contratação de uma consultoria ou de horas técnicas.**
+**Atenção!** Não respondo dúvidas ou dou suporte por nenhum outro canal.
+Para caso prefira, pode contratar a instalação pelo link a seguir.[Contratar Instalação](https://samtutor.online/store/suporte-e-instalacao/instalacao-e-configuracao-multivozes-br-engine)
 
-Para orçamentos ou para agendar uma consultoria, o contato deve ser feito via email samucamg@gmail.com ou WhatsApp: **33999928964**.
