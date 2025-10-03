@@ -11,3 +11,4 @@ emoji==2.12.1
 aiofiles==23.2.1
 aiohttp==3.11.10
 python-dotenv==1.0.1
+pydub==0.25.1
