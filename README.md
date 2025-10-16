@@ -78,7 +78,7 @@ Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/samucamg/multivozes_br_engine.git](https://github.com/samucamg/multivozes_br_engine.git)
+    git clone https://github.com/samucamg/multivozes_br_engine.git
     cd multivozes_br_engine
     ```
 2.  **Crie e ative um ambiente virtual:**
@@ -113,5 +113,6 @@ Para uma lista completa de vozes recomendadas e testadas, divididas por idioma e
 ---
 
 ## 📄 Licença e Política de Suporte
+
 
 Este projeto é distribuído sob a **licença MIT**. Para entender as opções de suporte gratuito (comunitário) e comercial (pago), por favor, consulte a nossa página de [**Auxílio e Suporte (SUPPORT.md)**](SUPPORT.md).
