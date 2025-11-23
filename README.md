@@ -131,4 +131,114 @@ Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
 
 ## ▶️ Executando o Servidor
 
-Com o ambiente virtual ativado, inicie o servidor com:
+Para manter o servidor rodando, escolha a opção que melhor se adapta à sua necessidade:
+
+### Opção 1: Teste Rápido (Terminal Aberto)
+
+Ideal para testar se tudo está funcionando. Se fechar o terminal, o servidor para.
+
+## ▶️ Executando o Servidor
+
+Para manter o servidor rodando, escolha a opção que melhor se adapta à sua necessidade:
+
+### Opção 1: Teste Rápido (Terminal Aberto)
+
+Ideal para testar se tudo está funcionando. Se fechar o terminal, o servidor para.
+
+```
+# Ative o ambiente virtual (se ainda não estiver ativo)
+source venv/bin/activate
+
+# Inicie o servidor
+python main.py
+```
+
+---
+
+### Opção 2: Persistente com Tmux (Recomendado para Monitoramento)
+
+O Tmux permite deixar o servidor rodando em "segundo plano", mas você pode "entrar" nele a qualquer momento para ver os logs em tempo real. Se fechar o SSH, ele continua rodando.
+
+**Instale o Tmux:**
+
+```
+sudo apt update && sudo apt install tmux -y
+```
+
+**Crie uma sessão e inicie:**
+
+```
+tmux new -s multivozes
+
+# Dentro da nova tela:
+source venv/bin/activate
+python main.py
+```
+
+**Para sair e deixar rodando (Detach):**
+
+Pressione `Ctrl + B`, solte, e depois aperte `D`.
+
+**Para voltar e ver os logs:**
+
+```
+tmux attach -t multivozes
+```
+
+**Nota:** Se o servidor reiniciar (reboot), o Tmux não inicia sozinho.
+
+---
+
+### Opção 3: Produção Automática (Systemd) 🏆
+
+A forma mais profissional. O servidor inicia automaticamente no boot e reinicia sozinho se houver falhas.
+
+**1. Comando de Instalação Automática:**
+
+Copie e cole todo o bloco abaixo no terminal (estando dentro da pasta `multivozes_br_engine`):
+
+```
+sudo bash -c "cat > /etc/systemd/system/multivozes.service <<EOF
+[Unit]
+Description=Multivozes BR Engine Service
+After=network.target
+
+[Service]
+User=\$USER
+WorkingDirectory=\$(pwd)
+ExecStart=\$(pwd)/venv/bin/python main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF" && sudo systemctl daemon-reload && sudo systemctl enable --now multivozes
+```
+
+**2. Gerenciando o Serviço:**
+
+```
+# Ver status
+sudo systemctl status multivozes
+
+# Ver logs em tempo real
+sudo journalctl -u multivozes -f
+
+# Parar
+sudo systemctl stop multivozes
+
+# Reiniciar
+sudo systemctl restart multivozes
+```
+
+---
+
+## 🌐 Acessando a API
+
+O servidor iniciará na porta padrão **5050**.
+
+Acesse a documentação interativa (Swagger UI) para testar a API em:
+
+- **Local:** http://localhost:5050/docs
+- **Remoto:** http://SEU_IP:5050/docs
+```
