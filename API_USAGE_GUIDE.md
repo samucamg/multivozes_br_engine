@@ -25,14 +25,14 @@ Este guia mostra como interagir diretamente com a API do **Multivozes BR Engine*
 Vamos usar a nova voz da Thalita, que fala português e outros idiomas.
 
 ```bash
-curl -X POST http://localhost:5050/v1/audio/speech \\
-  -H "Authorization: Bearer SUA_CHAVE_API_AQUI" \\
-  -H "Content-Type: application/json" \\
+curl -X POST http://localhost:5050/v1/audio/speech \
+  -H "Authorization: Bearer SUA_CHAVE_API_AQUI" \
+  -H "Content-Type: application/json" \
   -d '{
     "model": "tts-1",
     "input": "Olá, eu sou a Thalita, uma voz multilíngue. Hello, I can also speak English.",
     "voice": "pt-BR-ThalitaMultilingualNeural"
-  }' \\
+  }' \
   --output audio_multilingual.mp3
 ```
 
@@ -41,14 +41,14 @@ curl -X POST http://localhost:5050/v1/audio/speech \\
 Solicitando um formato de áudio de alta qualidade sem perdas.
 
 ```bash
-curl -X POST http://localhost:5050/v1/audio/speech \\
-  -H "Authorization: Bearer SUA_CHAVE_API_AQUI" \\
-  -H "Content-Type: application/json" \\
+curl -X POST http://localhost:5050/v1/audio/speech \
+  -H "Authorization: Bearer SUA_CHAVE_API_AQUI" \
+  -H "Content-Type: application/json" \
   -d '{
     "input": "Este áudio será gerado no formato FLAC.",
     "voice": "echo",
     "response_format": "flac"
-  }' \\
+  }' \
   --output audio.flac
 ```
 
@@ -89,4 +89,5 @@ try:
         print(f"Erro ao gerar áudio: {response.status_code} - {response.text}")
 
 except requests.exceptions.RequestException as e:
+
     print(f"Erro de conexão: {e}")
