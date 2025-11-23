@@ -34,7 +34,7 @@
 
 Uma API de TTS (Text-to-Speech) auto-hospedada, **100% compatível com a OpenAI**, que utiliza as vozes neurais de alta qualidade e **gratuitas** da Microsoft Edge. Agora com **suporte a vozes multilinguais**, configuração simplificada e conversão real de formatos de áudio.
 
-Este projeto foi criado por **Samuel de Sousa Santos** e é baseado no excelente trabalho de [travisvn/openai-edge-tts](https://github.com/travisvn/openai-edge-tts).
+Este projeto foi criado por **Samuel de Sousa Santos** e é baseado no excelente trabalho de **travisvn/openai-edge-tts**.
 
 ---
 
@@ -242,3 +242,4 @@ Acesse a documentação interativa (Swagger UI) para testar a API em:
 - **Local:** http://localhost:5050/docs
 - **Remoto:** http://SEU_IP:5050/docs
 ```
+
