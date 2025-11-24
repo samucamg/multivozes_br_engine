@@ -1,8 +1,14 @@
 {
-  "alloy": "pt-BR-FranciscaNeural",
-  "echo": "pt-BR-AntonioNeural",
-  "fable": "en-US-RogerNeural",
-  "onyx": "en-US-EricNeural",
-  "nova": "en-US-AvaNeural",
-  "shimmer": "en-US-EmmaNeural"
+  "alloy": "pt-BR-ThalitaMultilingualNeural",
+  "ash": "en-US-AndrewMultilingualNeural",
+  "ballad": "en-US-BrianMultilingualNeural",
+  "cedar": "en-AU-WilliamMultilingualNeural",
+  "coral": "en-US-AvaMultilingualNeural",
+  "echo": "it-IT-GiuseppeMultilingualNeural",
+  "fable": "en-US-EmmaMultilingualNeural",
+  "onyx": "fr-FR-RemyMultilingualNeural",
+  "nova": "de-DE-SeraphinaMultilingualNeural",
+  "sage": "fr-FR-VivienneMultilingualNeural",
+  "shimmer": "de-DE-FlorianMultilingualNeural",
+  "verse": "ko-KR-HyunsuMultilingualNeural"
 }
