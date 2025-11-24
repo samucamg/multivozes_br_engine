@@ -102,6 +102,7 @@ Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
 
 1.  **Clone o repositório:**
     ```
+    cd /opt
     git clone https://github.com/samucamg/multivozes_br_engine.git
     cd multivozes_br_engine
     ```
@@ -204,15 +205,18 @@ Description=Multivozes BR Engine Service
 After=network.target
 
 [Service]
-User=\$USER
-WorkingDirectory=\$(pwd)
-ExecStart=\$(pwd)/venv/bin/python main.py
+User=$USER
+WorkingDirectory=/opt/multivozes_br_engine
+ExecStart=/opt/multivozes_br_engine/venv/bin/python main.py
 Restart=always
 RestartSec=5
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
 EOF" && sudo systemctl daemon-reload && sudo systemctl enable --now multivozes
+
 ```
 
 **2. Gerenciando o Serviço:**
@@ -242,4 +246,5 @@ Acesse a documentação interativa (Swagger UI) para testar a API em:
 - **Local:** http://localhost:5050/docs
 - **Remoto:** http://SEU_IP:5050/docs
 ```
+
 
