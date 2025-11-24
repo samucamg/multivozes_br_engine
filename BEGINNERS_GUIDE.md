@@ -38,6 +38,7 @@ sudo apt install git python3 python3-venv python3-pip ffmpeg -y
 
 ```
 # 1. Clone o projeto do GitHub
+cd /opt
 git clone https://github.com/samucamg/multivozes_br_engine.git
 
 # 2. Entre na pasta do projeto
@@ -54,7 +55,6 @@ pip install -r requirements.txt
 
 # 6. Copie os ficheiros de exemplo de configuração
 cp .env.example .env
-cp voices.example.json voices.json
 ```
 
 ### Passo 5: Gerar sua Chave de API (Bearer Token)
@@ -91,7 +91,7 @@ Ideal para testar. Se fechar o terminal, o servidor para.
 
 ```
 # Certifique-se de estar na pasta do projeto
-cd ~/multivozes_br_engine
+cd /opt/multivozes_br_engine
 
 # Ative o ambiente virtual
 source venv/bin/activate
@@ -112,7 +112,7 @@ sudo apt install tmux -y
 tmux new -s multivozes
 
 # Dentro do Tmux, inicie o servidor
-cd ~/multivozes_br_engine
+cd /opt/multivozes_br_engine
 source venv/bin/activate
 python main.py
 ```
@@ -138,8 +138,8 @@ After=network.target
 
 [Service]
 User=$USER
-WorkingDirectory=$HOME/multivozes_br_engine
-ExecStart=$HOME/multivozes_br_engine/venv/bin/python main.py
+WorkingDirectory=/opt/multivozes_br_engine
+ExecStart=/opt/multivozes_br_engine/venv/bin/python main.py
 Restart=always
 RestartSec=5
 StandardOutput=journal
@@ -147,7 +147,7 @@ StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
-EOF" && sudo systemctl daemon-reload && sudo systemctl enable multivozes && sudo systemctl start multivozes && echo "✅ Serviço instalado e iniciado com sucesso!"
+EOF" && sudo systemctl daemon-reload && sudo systemctl enable --now multivozes && echo "✅ Serviço instalado e iniciado com sucesso!"
 ```
 
 **Gerenciar o Serviço:**
@@ -268,3 +268,4 @@ Com tudo instalado e funcionando:
 ```
 
 **Pronto! Copie TUDO de uma única vez!** 🎯
+
