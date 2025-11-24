@@ -31,7 +31,7 @@ curl -X POST http://localhost:5050/v1/audio/speech \
   -d '{
     "model": "tts-1",
     "input": "Olá, eu sou a Thalita, uma voz multilíngue. Hello, I can also speak English.",
-    "voice": "pt-BR-ThalitaMultilingualNeural"
+    "voice": "alloy"
   }' \
   --output audio_multilingual.mp3
 ```
@@ -45,7 +45,7 @@ curl -X POST http://localhost:5050/v1/audio/speech \
   -H "Authorization: Bearer SUA_CHAVE_API_AQUI" \
   -H "Content-Type: application/json" \
   -d '{
-    "input": "Este áudio será gerado no formato FLAC.",
+    "input": "Este áudio será gerado no formato FLAC. This is an audio in FLAC",
     "voice": "echo",
     "response_format": "flac"
   }' \
@@ -91,3 +91,4 @@ try:
 except requests.exceptions.RequestException as e:
 
     print(f"Erro de conexão: {e}")
+
