@@ -123,9 +123,9 @@ Para tirar o máximo proveito do projeto, consulte os nossos guias detalhados:
     cp .env.example .env
     ```
 
-5.  **(Novo!) Crie e personalize as vozes:** Copie `voices.example.json` para `voices.json` para definir seus mapeamentos de voz.
+5.  **(Novo!) Mapear vozes da Open ai:**  você pode editar de forma bem simples o mapeamentos de vozes para os padrões da openai.
     ```
-    cp voices.example.json voices.json
+    nano voices.json
     ```
 
 ---
@@ -246,5 +246,6 @@ Acesse a documentação interativa (Swagger UI) para testar a API em:
 - **Local:** http://localhost:5050/docs
 - **Remoto:** http://SEU_IP:5050/docs
 ```
+
 
 
