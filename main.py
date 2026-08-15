@@ -3,8 +3,14 @@ from fastapi import Request, HTTPException, BackgroundTasks, Depends
 from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 import os
+import sys
 import traceback
 import uvicorn
+
+# Força saída em UTF-8 (evita UnicodeEncodeError com emojis no console do Windows).
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 from config import DEFAULT_CONFIGS
 from handle_text import preparar_texto_para_tts
