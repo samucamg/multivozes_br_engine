@@ -2,7 +2,7 @@ fastapi==0.111.0
 uvicorn[standard]==0.29.0
 pydantic==2.7.1
 loguru==0.7.2
-edge-tts==7.0.0
+edge-tts==7.2.8
 anyio==4.3.0
 starlette==0.37.2
 openai==1.25.1
