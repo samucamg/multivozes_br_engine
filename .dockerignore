@@ -1,0 +1,16 @@
+.git
+LOG_REVISAO_CLAUDE_LOCAL.md
+samples/
+.env
+.env.*
+!.env.example
+.venv*
+venv
+__pycache__
+*.pyc
+*.mp3
+*.wav
+*.flac
+node_modules
+workers
+tests

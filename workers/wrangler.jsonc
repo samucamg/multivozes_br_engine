@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "multivozes-proxy",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": true,
+  "vars": {
+    "ORIGIN_URL": "https://tts-origin.example.com",
+    "ORIGIN_TIMEOUT_MS": "120000"
+  },
+  "observability": { "enabled": false }
+}

@@ -1,0 +1,22 @@
+services:
+  multivozes:
+    build: .
+    restart: unless-stopped
+    env_file: ${ENV_FILE:-.env}
+    environment:
+      API_KEY: ${API_KEY:?Defina API_KEY no arquivo .env antes de iniciar}
+      REQUIRE_API_KEY: "true"
+      PORT: "5050"
+      HOST: "0.0.0.0"
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-5050}:5050"
+    volumes:
+      - ./voices.json:/app/voices.json:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=256m,mode=1777
+    stop_grace_period: 100s

@@ -1,0 +1,3 @@
+# Copie para .dev.vars apenas no desenvolvimento local.
+PROXY_API_KEY=troque-por-uma-chave-do-cliente
+ORIGIN_API_KEY=mesma-chave-API_KEY-do-backend
