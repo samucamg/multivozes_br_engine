@@ -1,99 +1,90 @@
-import edge_tts
+"""Edge synthesis with cancellable, explicitly encoded FFmpeg conversions."""
+import asyncio
+import json
 import os
-import traceback
+import shutil
 import tempfile
-import json # NOVO: Para carregar o ficheiro JSON
 from pathlib import Path
-from pydub import AudioSegment # NOVO: Para conversão de áudio
+import edge_tts
 from dotenv import load_dotenv
-
-from config import DEFAULT_CONFIGS
-from utils import LOG_ERROS_DETALHADO
+from config import DEFAULT_OPENAI_VOICES
 
 load_dotenv()
+PROXY = os.getenv('PROXY') or None
 
-# --- Carregamento de Configurações ---
-PROXY = os.getenv("PROXY", None)
-
-# --- Mapeamento e Dados de Vozes ---
-
-# ALTERADO: Carrega o mapeamento de vozes de um ficheiro JSON externo
 def carregar_mapeamento_vozes():
-    """Carrega o mapeamento de vozes do ficheiro voices.json."""
-    caminho_ficheiro = Path(__file__).parent / "voices.json"
-    if not caminho_ficheiro.exists():
-        # Retorna um mapeamento padrão caso o ficheiro não exista, para evitar erros
-        print("AVISO: Ficheiro 'voices.json' não encontrado. A usar mapeamento padrão.")
-        return {
-            'alloy': 'pt-BR-FranciscaNeural',
-            'echo': 'pt-BR-AntonioNeural',
-        }
-    with open(caminho_ficheiro, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    path = Path(__file__).with_name('voices.json')
+    if not path.exists():
+        return dict(DEFAULT_OPENAI_VOICES)
+    with path.open(encoding='utf-8') as stream:
+        mapping = json.load(stream)
+    if not isinstance(mapping, dict) or not all(
+        isinstance(alias, str) and alias and isinstance(voice, str) and voice
+        for alias, voice in mapping.items()
+    ):
+        raise ValueError('voices.json deve mapear nomes para vozes em texto.')
+    for alias, voice in mapping.items():
+        if alias in DEFAULT_OPENAI_VOICES and not voice.endswith('MultilingualNeural'):
+            raise ValueError(f'O alias OpenAI {alias!r} deve usar uma voz MultilingualNeural.')
+    return mapping
 
 MAPEAMENTO_VOZES = carregar_mapeamento_vozes()
-
-# Dados dos modelos para compatibilidade com a API OpenAI
-DADOS_MODELOS = [
-    {"id": "tts-1", "name": "Text-to-speech v1"},
-    {"id": "tts-1-hd", "name": "Text-to-speech v1 HD"},
-]
+DADOS_MODELOS = [{'id': 'tts-1', 'name': 'Text-to-speech v1'}, {'id': 'tts-1-hd', 'name': 'Text-to-speech v1 HD'}]
+CONVERSION_ARGS = {
+    'opus': ['-c:a', 'libopus', '-f', 'ogg'],
+    'aac': ['-c:a', 'aac', '-f', 'adts'],
+    'flac': ['-c:a', 'flac', '-f', 'flac'],
+    'wav': ['-c:a', 'pcm_s16le', '-f', 'wav'],
+    'pcm': ['-c:a', 'pcm_s16le', '-ar', '24000', '-ac', '1', '-f', 's16le'],
+}
 
 def velocidade_para_taxa(velocidade: float) -> str:
-    """Converte um multiplicador de velocidade (ex: 1.5) para o formato de taxa do edge-tts (ex: '+50%')."""
     if not 0.25 <= velocidade <= 2.0:
-        raise ValueError("A velocidade deve estar entre 0.25 e 2.0.")
-    percentagem = int((velocidade - 1) * 100)
-    return f"+{percentagem}%" if percentagem >= 0 else f"{percentagem}%"
+        raise ValueError('A velocidade deve estar entre 0.25 e 2.0.')
+    return f'{round((velocidade - 1) * 100):+d}%'
+
+def _temporary_path(suffix):
+    descriptor, path = tempfile.mkstemp(suffix=suffix)
+    os.close(descriptor)
+    return path
+
+async def _convert(source, destination, format_name):
+    ffmpeg = shutil.which('ffmpeg')
+    if not ffmpeg:
+        raise RuntimeError('FFmpeg não está instalado para converter áudio.')
+    process = await asyncio.create_subprocess_exec(
+        ffmpeg, '-nostdin', '-hide_banner', '-loglevel', 'error', '-y',
+        '-i', source, '-vn', *CONVERSION_ARGS[format_name], destination,
+        stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL,
+    )
+    try:
+        if await process.wait() != 0:
+            raise RuntimeError('FFmpeg não conseguiu converter o áudio.')
+    except BaseException:
+        if process.returncode is None:
+            process.kill()
+            await process.wait()
+        raise
 
 async def gerar_audio(texto: str, voz: str, formato_resposta: str, velocidade: float) -> str:
-    """
-    Gera o áudio usando edge-tts (sempre como mp3 inicialmente), e depois converte
-    para o formato final desejado, salvando num ficheiro temporário.
-    """
-    # Verifica se a voz solicitada é um apelido da OpenAI e a converte
-    voz_edge_tts = MAPEAMENTO_VOZES.get(voz, voz)
+    formato_resposta = formato_resposta.lower()
+    if formato_resposta not in {'mp3', *CONVERSION_ARGS}:
+        raise ValueError('Formato de áudio não suportado.')
     taxa = velocidade_para_taxa(velocidade)
-
-    # Cria um ficheiro temporário para a saída inicial do edge-tts (sempre mp3)
-    ficheiro_temp_mp3 = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
-    caminho_temp_mp3 = ficheiro_temp_mp3.name
-    ficheiro_temp_mp3.close()
-
-    caminho_final_audio = None # Variável para guardar o caminho do ficheiro final
-
+    source = _temporary_path('.mp3')
+    destination = source
     try:
-        # 1. Gera o áudio com edge-tts e salva como MP3
-        comunicador = edge_tts.Communicate(texto, voz_edge_tts, rate=taxa, proxy=PROXY)
-        await comunicador.save(caminho_temp_mp3)
-
-        # 2. Converte o áudio se o formato de resposta for diferente de mp3
-        if formato_resposta.lower() != "mp3":
-            # Cria um novo ficheiro temporário para o formato final
-            ficheiro_temp_final = tempfile.NamedTemporaryFile(delete=False, suffix=f".{formato_resposta}")
-            caminho_final_audio = ficheiro_temp_final.name
-            ficheiro_temp_final.close()
-
-            # Usa pydub para carregar o MP3 e exportar no formato desejado
-            audio = AudioSegment.from_mp3(caminho_temp_mp3)
-            audio.export(caminho_final_audio, format=formato_resposta.lower())
-            
-            # Remove o ficheiro mp3 intermediário
-            Path(caminho_temp_mp3).unlink()
-        else:
-            # Se o formato for mp3, o ficheiro temporário já é o final
-            caminho_final_audio = caminho_temp_mp3
-
-    except Exception as e:
-        # Se ocorrer um erro, remove os ficheiros temporários para não deixar lixo
-        if caminho_temp_mp3 and Path(caminho_temp_mp3).exists():
-            Path(caminho_temp_mp3).unlink(missing_ok=True)
-        if caminho_final_audio and Path(caminho_final_audio).exists():
-            Path(caminho_final_audio).unlink(missing_ok=True)
-            
-        if LOG_ERROS_DETALHADO:
-            print(f"Erro detalhado em gerar_audio: {traceback.format_exc()}")
-        raise RuntimeError(f"Falha ao gerar ou converter áudio: {e}")
-
-    # Retorna o caminho do ficheiro de áudio final
-    return caminho_final_audio
+        communicator = edge_tts.Communicate(texto, MAPEAMENTO_VOZES.get(voz, voz), rate=taxa, proxy=PROXY)
+        await communicator.save(source)
+        if not Path(source).stat().st_size:
+            raise RuntimeError('O provedor retornou áudio vazio.')
+        if formato_resposta != 'mp3':
+            destination = _temporary_path(f'.{formato_resposta}')
+            await _convert(source, destination, formato_resposta)
+            Path(source).unlink(missing_ok=True)
+        return destination
+    except BaseException:
+        # Cancellation from request timeout must also remove partial output.
+        Path(source).unlink(missing_ok=True)
+        Path(destination).unlink(missing_ok=True)
+        raise

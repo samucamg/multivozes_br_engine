@@ -18,10 +18,10 @@ LOG_ERROS_DETALHADO = obter_env_bool('DETAILED_ERROR_LOGGING', DEFAULT_CONFIGS.g
 # Dicionário com os tipos MIME para cada formato de áudio suportado.
 TIPOS_MIME_AUDIO = {
     "mp3": "audio/mpeg",
-    "opus": "audio/opus",
+    "opus": "audio/ogg",
     "aac": "audio/aac",
     "flac": "audio/flac",
     "wav": "audio/wav",
-    "pcm": "audio/L16"
+    "pcm": "application/octet-stream"
 }
 

@@ -1,0 +1,67 @@
+{
+  "collected_at_utc": "2026-10-25T14:12:36.780488+00:00",
+  "source": "Microsoft Edge live catalog via edge-tts 7.3.1",
+  "note": "Gender is Edge catalog metadata, not an OpenAI classification.",
+  "voices": [
+    {
+      "ShortName": "de-DE-FlorianMultilingualNeural",
+      "Gender": "Male",
+      "Locale": "de-DE"
+    },
+    {
+      "ShortName": "de-DE-SeraphinaMultilingualNeural",
+      "Gender": "Female",
+      "Locale": "de-DE"
+    },
+    {
+      "ShortName": "en-AU-WilliamMultilingualNeural",
+      "Gender": "Male",
+      "Locale": "en-AU"
+    },
+    {
+      "ShortName": "en-US-AndrewMultilingualNeural",
+      "Gender": "Male",
+      "Locale": "en-US"
+    },
+    {
+      "ShortName": "en-US-AvaMultilingualNeural",
+      "Gender": "Female",
+      "Locale": "en-US"
+    },
+    {
+      "ShortName": "en-US-BrianMultilingualNeural",
+      "Gender": "Male",
+      "Locale": "en-US"
+    },
+    {
+      "ShortName": "en-US-EmmaMultilingualNeural",
+      "Gender": "Female",
+      "Locale": "en-US"
+    },
+    {
+      "ShortName": "fr-FR-RemyMultilingualNeural",
+      "Gender": "Male",
+      "Locale": "fr-FR"
+    },
+    {
+      "ShortName": "fr-FR-VivienneMultilingualNeural",
+      "Gender": "Female",
+      "Locale": "fr-FR"
+    },
+    {
+      "ShortName": "it-IT-GiuseppeMultilingualNeural",
+      "Gender": "Male",
+      "Locale": "it-IT"
+    },
+    {
+      "ShortName": "ko-KR-HyunsuMultilingualNeural",
+      "Gender": "Male",
+      "Locale": "ko-KR"
+    },
+    {
+      "ShortName": "pt-BR-ThalitaMultilingualNeural",
+      "Gender": "Female",
+      "Locale": "pt-BR"
+    }
+  ]
+}

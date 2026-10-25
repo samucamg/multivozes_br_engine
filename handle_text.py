@@ -22,7 +22,7 @@ def preparar_texto_para_tts(texto: str) -> str:
 
     # Expressões regulares para remover formatação Markdown
     # Remove links de Markdown, mantendo o texto âncora: [clique aqui](http://site.com) -> clique aqui
-    texto = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', texto)
+    texto = re.sub(r'!?\[([^\]]*)\]\([^\)]+\)', r'\1', texto)
     # Remove imagens de Markdown, mantendo o texto alternativo (alt text): ![descrição da imagem](imagem.png) -> descrição da imagem
     texto = re.sub(r'!\[([^\]]*)\]\([^\)]+\)', r'\1', texto)
     # Remove símbolos de formatação (negrito, itálico, etc.), mantendo o conteúdo

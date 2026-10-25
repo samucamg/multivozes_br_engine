@@ -1,0 +1,12 @@
+*.sh text eol=lf
+*.js text eol=lf
+*.jsonc text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.service text eol=lf
+Dockerfile text eol=lf
+*.png binary
+*.jpg binary
+*.mp3 binary
+*.wav binary
+*.flac binary

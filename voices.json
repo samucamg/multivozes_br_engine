@@ -5,10 +5,11 @@
   "cedar": "en-AU-WilliamMultilingualNeural",
   "coral": "en-US-AvaMultilingualNeural",
   "echo": "it-IT-GiuseppeMultilingualNeural",
-  "fable": "en-US-EmmaMultilingualNeural",
+  "fable": "it-IT-GiuseppeMultilingualNeural",
+  "marin": "en-US-EmmaMultilingualNeural",
   "onyx": "fr-FR-RemyMultilingualNeural",
   "nova": "de-DE-SeraphinaMultilingualNeural",
   "sage": "fr-FR-VivienneMultilingualNeural",
-  "shimmer": "de-DE-FlorianMultilingualNeural",
+  "shimmer": "en-US-EmmaMultilingualNeural",
   "verse": "ko-KR-HyunsuMultilingualNeural"
 }
