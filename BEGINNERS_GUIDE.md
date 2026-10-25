@@ -1,271 +1,100 @@
-# 📘 Guia de Instalação para Iniciantes - Multivozes BR Engine
+# Instalação e diagnóstico
 
-Olá! 👋 Bem-vindo ao Multivozes BR Engine! Este guia foi feito para você que está a começar e quer instalar o projeto passo a passo, sem complicações.
+Comece pelo [README](README.md). Este guia detalha dependências e execução contínua. O serviço depende de acesso HTTPS/WebSocket ao Edge; não funciona totalmente offline.
 
----
+## Windows sem Docker
 
-## 🤔 Antes de Começar: Conceitos Básicos
+Instale Python 3.12 e Git, habilitando Python no PATH. Para outros formatos além de MP3:
 
-* **Servidor / VPS:** Um computador alugado na internet que fica ligado 24/7, ideal para hospedar este projeto.
-* **Terminal:** A "tela preta" onde digitamos comandos.
-* **SSH:** A "chave" para aceder e controlar o seu servidor de forma segura.
-* **Ambiente Virtual (venv):** Uma "bolha" isolada para o nosso projeto Python, para que as dependências não se misturem com outros projetos.
-* **Bearer Token:** Uma chave de segurança que protege sua API de acessos não autorizados.
-
----
-
-## 💻 Opção 1: Instalação em Servidor (VPS) com Ubuntu/Debian (Recomendado)
-
-### Passo 1: Aceder ao seu Servidor via SSH
-
-```
-ssh seu_usuario@IP_DO_SERVIDOR
+```powershell
+winget install --id Gyan.FFmpeg --exact
 ```
 
-### Passo 2: Atualizar o Servidor
+Abra um novo terminal após a instalação e confira `ffmpeg -version`.
 
-```
-sudo apt update && sudo apt upgrade -y
-```
-
-### Passo 3: Instalar as Ferramentas Essenciais
-
-```
-sudo apt install git python3 python3-venv python3-pip ffmpeg -y
-```
-
-### Passo 4: Clonar e Configurar o Projeto
-
-```
-# 1. Clone o projeto do GitHub
-cd /opt
+```powershell
 git clone https://github.com/samucamg/multivozes_br_engine.git
-
-# 2. Entre na pasta do projeto
 cd multivozes_br_engine
-
-# 3. Crie o ambiente virtual (a "bolha")
-python3 -m venv venv
-
-# 4. Ative o ambiente virtual
-source venv/bin/activate
-
-# 5. Instale as dependências exatas do projeto
-pip install -r requirements.txt
-
-# 6. Copie os ficheiros de exemplo de configuração
-cp .env.example .env
+py -3.12 scripts/setup.py
+.\.venv\Scripts\python.exe main.py
 ```
 
-### Passo 5: Gerar sua Chave de API (Bearer Token)
+O script gera a chave no `.env` e não exige ativar o ambiente virtual, evitando mudanças na política de execução do PowerShell. Ao fechar o terminal, o processo termina. Para persistência no Windows, prefira Docker Desktop configurado para iniciar com o sistema.
 
-Você precisa criar uma chave de API única e segura. Execute este comando para gerar uma automaticamente:
+## Debian/Ubuntu sem Docker
 
-```
-# Gera uma chave aleatória e segura com 64 caracteres
-echo "API_KEY=sk-$(openssl rand -hex 32)" | tee -a .env
-```
-
-**Ou crie manualmente:** Abra o arquivo `.env` e defina sua própria chave:
-
-```
-nano .env
+```sh
+sudo apt update
+sudo apt install -y python3 python3-venv python3-pip ffmpeg git
+git clone https://github.com/samucamg/multivozes_br_engine.git
+cd multivozes_br_engine
+python3 scripts/setup.py
+.venv/bin/python main.py
 ```
 
-Edite a linha `API_KEY=` para algo como:
-```
-API_KEY=sk-sua-chave-secreta-aqui-123456789
-```
+Confira `python3 --version`: deve ser 3.10–3.13. Se a distribuição fornecer outra versão, use Python 3.12 ou Docker. Não instale dependências do projeto no Python global do sistema.
 
-**Dica:** Use uma chave longa e complexa. A chave gerada automaticamente é mais segura!
+## macOS sem Docker
 
----
+Com Homebrew instalado:
 
-## ▶️ Executando o Servidor
-
-Após a instalação, escolha como deseja executar:
-
-### Opção A: Teste Rápido (Terminal Aberto)
-
-Ideal para testar. Se fechar o terminal, o servidor para.
-
-```
-# Certifique-se de estar na pasta do projeto
-cd /opt/multivozes_br_engine
-
-# Ative o ambiente virtual
-source venv/bin/activate
-
-# Inicie o servidor
-python main.py
+```sh
+brew install python@3.12 ffmpeg git
+git clone https://github.com/samucamg/multivozes_br_engine.git
+cd multivozes_br_engine
+python3.12 scripts/setup.py
+.venv/bin/python main.py
 ```
 
-### Opção B: Persistente com Tmux
+## Docker
 
-O Tmux mantém o servidor rodando mesmo se você desconectar do SSH.
+Use os passos do [README](README.md#com-docker). O contêiner roda sem privilégios, com sistema de arquivos somente leitura e espaço temporário limitado. Síntese e conversões usam `/tmp`; ajuste `tmpfs` em `compose.yaml` se o uso exigir mais espaço.
 
-```
-# Instale o Tmux
-sudo apt install tmux -y
+Por padrão apenas o próprio computador acessa a porta publicada. Para acesso remoto prefira [proxy HTTPS/Tunnel](DEPLOY.md). `BIND_ADDRESS=0.0.0.0` no `.env` publica nas interfaces de rede: configure firewall e HTTPS antes.
 
-# Crie uma sessão
-tmux new -s multivozes
+## Início automático com systemd (Linux)
 
-# Dentro do Tmux, inicie o servidor
-cd /opt/multivozes_br_engine
-source venv/bin/activate
-python main.py
-```
+Use uma instalação dedicada em `/opt/multivozes_br_engine`; execute a instalação local antes. O arquivo de serviço usa usuário sem root. Ajuste os caminhos no arquivo se instalar em outro local.
 
-**Para sair sem parar o servidor:** Pressione `Ctrl+B`, solte, depois pressione `D`
-
-**Para voltar à sessão:**
-```
-tmux attach -t multivozes
+```sh
+sudo useradd --system --user-group --home-dir /opt/multivozes_br_engine --shell /usr/sbin/nologin multivozes
+sudo chown -R multivozes:multivozes /opt/multivozes_br_engine
+sudo chmod 600 /opt/multivozes_br_engine/.env
+sudo cp multivozes_br_engine.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now multivozes_br_engine
+sudo systemctl status multivozes_br_engine
 ```
 
-### Opção C: Produção com Systemd (Instalação em Uma Linha) 🏆
+Se o usuário já existir, pule `useradd`. A mudança de proprietário vale apenas para a instalação dedicada em `/opt`, não uma pasta compartilhada com outros projetos. O aplicativo lê `.env`; não duplique segredos no serviço.
 
-Esta é a forma mais profissional. O servidor inicia automaticamente no boot e reinicia sozinho se houver falhas.
-
-**Instalação Automática em Uma Única Linha:**
-
-```
-sudo bash -c "cat > /etc/systemd/system/multivozes.service <<EOF
-[Unit]
-Description=Multivozes BR Engine Service
-After=network.target
-
-[Service]
-User=$USER
-WorkingDirectory=/opt/multivozes_br_engine
-ExecStart=/opt/multivozes_br_engine/venv/bin/python main.py
-Restart=always
-RestartSec=5
-StandardOutput=journal
-StandardError=journal
-
-[Install]
-WantedBy=multi-user.target
-EOF" && sudo systemctl daemon-reload && sudo systemctl enable --now multivozes && echo "✅ Serviço instalado e iniciado com sucesso!"
+```sh
+sudo journalctl -u multivozes_br_engine -f
+sudo systemctl restart multivozes_br_engine
+sudo systemctl stop multivozes_br_engine
 ```
 
-**Gerenciar o Serviço:**
+## Confirmar funcionamento
 
-```
-# Ver status
-sudo systemctl status multivozes
+1. `/health`: processo iniciou.
+2. `/v1/models`: cliente alcança o servidor.
+3. `/v1/voices` com chave: catálogo consulta Edge.
+4. `/v1/audio/speech` com texto curto gera MP3: síntese real funciona.
+5. Repita com `wav`: confirma FFmpeg e conversão.
 
-# Ver logs em tempo real
-sudo journalctl -u multivozes -f
+Exemplos em [API_USAGE_GUIDE.md](API_USAGE_GUIDE.md). Saúde não consulta Microsoft e não comprova síntese.
 
-# Parar o serviço
-sudo systemctl stop multivozes
+## Problemas frequentes
 
-# Reiniciar o serviço
-sudo systemctl restart multivozes
+| Sintoma | Verificação |
+| --- | --- |
+| Conexão recusada | Processo ativo, porta e endereço corretos? `docker compose ps` e logs |
+| HTTP 401 | Envie `Authorization: Bearer CHAVE_DO_ENV`; no Worker use a chave do proxy |
+| Falha ao autenticar | Chave vazia com autenticação habilitada? Configure e reinicie |
+| MP3 funciona, WAV/Opus falha | Confira `ffmpeg -version` no ambiente do servidor |
+| Edge 403/NoAudioReceived | Versão edge-tts, relógio, proxy de saída e voz do catálogo; catálogo Azure não prova disponibilidade Edge |
+| Timeout/502/503 | Texto curto e voz pt-BR; confira acesso externo no host e logs |
+| Porta ocupada | Ajuste `PORT` e reinicie; Compose exige recriar o contêiner |
+| n8n em Docker não acessa localhost | localhost é o contêiner n8n; use rede compartilhada ou endereço HTTPS |
 
-# Desabilitar inicialização automática
-sudo systemctl disable multivozes
-```
-
----
-
-## 🖥️ Opção 2: Instalação no Windows com WSL2 (Testes Locais)
-
-WSL2 (Subsistema do Windows para Linux) permite que você tenha um ambiente Linux completo dentro do seu Windows. É a forma mais fácil e compatível de rodar o projeto localmente.
-
-### Passo 1: Instalar/Ativar o WSL2
-
-Abra o **PowerShell** ou o **Terminal do Windows** como **Administrador** e execute:
-
-```
-wsl --install
-```
-
-Isso instalará o Ubuntu por padrão. **Reinicie o computador** quando solicitado.
-
-### Passo 2: Abrir o Terminal do Ubuntu
-
-Após reiniciar, procure por **"Ubuntu"** no Menu Iniciar e abra-o.
-
-### Passo 3: Configurar o Ubuntu
-
-Na primeira vez, você precisará criar um usuário e senha para o Ubuntu.
-
-### Passo 4: Seguir os Passos da Opção 1
-
-A partir daqui, você está num ambiente Linux! 🎉 
-
-Execute os comandos da **Opção 1** (Passos 2 a 5) normalmente no terminal do Ubuntu.
-
-**Nota para Windows:** No WSL2, sua pasta do Windows fica em `/mnt/c/Users/SeuUsuario/`
-
----
-
-## 🌐 Testando a API
-
-Após iniciar o servidor, acesse a documentação interativa:
-
-**Se instalou localmente (Windows/WSL2):**
-- http://localhost:5050/docs
-
-**Se instalou em servidor:**
-- http://SEU_IP_DO_SERVIDOR:5050/docs
-
-### Teste Rápido com cURL
-
-```
-curl -X POST http://localhost:5050/v1/audio/speech \
-  -H "Authorization: Bearer SUA_CHAVE_API_AQUI" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "tts-1",
-    "input": "Olá, este é um teste do Multivozes BR Engine!",
-    "voice": "pt-BR-FranciscaNeural"
-  }' \
-  --output teste.mp3
-```
-
-**Lembre-se:** Substitua `SUA_CHAVE_API_AQUI` pela chave que você definiu no arquivo `.env`!
-
----
-
-## 🆘 Problemas Comuns
-
-### "docker: command not found"
-Se você quiser usar Docker, instale com:
-```
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-```
-
-### "Permission denied" ao executar comandos
-Use `sudo` antes do comando ou verifique as permissões do diretório.
-
-### Porta 5050 já está em uso
-Altere a porta no arquivo `.env`:
-```
-nano .env
-# Mude PORT=5050 para PORT=8080 (ou outra porta livre)
-```
-
-### O servidor para quando fecho o terminal
-Use o **Tmux** (Opção B) ou **Systemd** (Opção C) para manter rodando em segundo plano.
-
----
-
-## 🎉 Próximos Passos
-
-Com tudo instalado e funcionando:
-
-1. ✅ Configure suas vozes personalizadas em `voices.json`
-2. ✅ Integre com n8n, Make ou outras plataformas
-3. ✅ Explore o [Painel MultiVozes](https://multivozes.com) para uma interface completa
-4. ✅ Leia o [Guia de Uso da API](API_USAGE_GUIDE.md) para comandos avançados
-
-**Dúvidas?** Consulte o [SUPPORT.md](SUPPORT.md) ou o canal no YouTube!
-```
-
-**Pronto! Copie TUDO de uma única vez!** 🎯
-
+Para diagnóstico, informe commit (`git rev-parse HEAD`), sistema/Python, versão edge-tts e erro com texto público. Nunca envie `.env`, tokens, texto de clientes ou URL de proxy com senha.
