@@ -48,7 +48,9 @@ python3.12 scripts/setup.py
 
 ## Docker
 
-Use os passos do [README](README.md#com-docker). O contêiner roda sem privilégios, com sistema de arquivos somente leitura e espaço temporário limitado. Síntese e conversões usam `/tmp`; ajuste `tmpfs` em `compose.yaml` se o uso exigir mais espaço.
+Use os passos do [README](README.md#instalação-em-4-passos-recomendado-docker). O contêiner roda sem privilégios, com sistema de arquivos somente leitura e espaço temporário limitado. Síntese e conversões usam `/tmp`; ajuste `tmpfs` em `compose.yaml` se o uso exigir mais espaço.
+
+No Windows com WSL2, use a integração da distribuição com o Docker Desktop; não é necessário instalar outro Docker Engine no Ubuntu. No PowerShell, `docker context show` deve indicar o contexto do Docker Desktop (normalmente `desktop-linux`). Compare `docker info --format '{{.ID}}'` no Windows e na distribuição WSL: identificadores iguais confirmam que ambos usam o mesmo servidor Docker. Se o comando não funcionar no WSL, confira a integração da distribuição nas configurações do Docker Desktop.
 
 Por padrão apenas o próprio computador acessa a porta publicada. Para acesso remoto prefira [proxy HTTPS/Tunnel](DEPLOY.md). `BIND_ADDRESS=0.0.0.0` no `.env` publica nas interfaces de rede: configure firewall e HTTPS antes.
 

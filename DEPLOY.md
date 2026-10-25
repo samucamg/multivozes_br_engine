@@ -41,7 +41,7 @@ Para trabalhos demorados, a evolução recomendada é enviar um job e receber HT
 
 ## 1. Hospedar o motor
 
-**VPS:** siga o [README](README.md#com-docker) ou [systemd](BEGINNERS_GUIDE.md#início-automático-com-systemd-linux). Mantenha `REQUIRE_API_KEY=True`. Exponha a origem por HTTPS com certificado válido.
+**VPS:** siga a [instalação Docker do README](README.md#instalação-em-4-passos-recomendado-docker) ou [systemd](BEGINNERS_GUIDE.md#início-automático-com-systemd-linux). Mantenha `REQUIRE_API_KEY=True`. Exponha a origem por HTTPS com certificado válido.
 
 **Plataforma de contêineres:** selecione este repositório/Dockerfile, configure `API_KEY`, `REQUIRE_API_KEY=True` e a porta interna 5050. O processo também respeita `PORT` fornecido pela plataforma. Configure `/health` como healthcheck. O host precisa permitir saída HTTPS/WebSocket para Microsoft e espaço temporário gravável. Não há dependência de disco persistente para áudios; eles são temporários e removidos após a resposta.
 
@@ -110,7 +110,7 @@ O código deixa observabilidade do Worker desligada por padrão e não registra 
 
 ## Atualizar e reverter
 
-Guarde o commit/imagem anterior e uma cópia privada de configurações. Backend: faça rebuild e reinicie, testando um MP3 e um formato convertido. Worker: `npm ci`, `npm test`, `npm run check`, `npm run deploy`. Para reverter o Worker, use a versão anterior em Workers → Deployments; para o backend, volte à imagem/commit anterior e reinstale as dependências correspondentes. Nunca reverta a chave por uma chave de exemplo pública.
+Guarde o commit/imagem anterior e uma cópia privada de configurações. Backend: faça rebuild e reinicie, testando um MP3 e um formato convertido. Worker: `npm ci`, `npm run check`, `npm run deploy`. `npm run check` valida o pacote sem publicar; testes automatizados não acompanham este repositório. Após publicar, confira autenticação, catálogo e geração real de áudio. Para reverter o Worker, use a versão anterior em Workers → Deployments; para o backend, volte à imagem/commit anterior e reinstale as dependências correspondentes. Nunca reverta a chave por uma chave de exemplo pública.
 
 ## Referências consultadas
 
