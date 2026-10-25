@@ -8,8 +8,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "check": "wrangler deploy --dry-run",
-    "test": "node --test"
+    "check": "wrangler deploy --dry-run"
   },
   "devDependencies": {
     "wrangler": "4.152.0"

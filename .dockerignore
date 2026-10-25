@@ -13,4 +13,3 @@ __pycache__
 *.flac
 node_modules
 workers
-tests

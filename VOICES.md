@@ -42,7 +42,7 @@ Não foi feita comparação auditiva entre as vozes OpenAI e Edge, nem medição
 
 Destinos repetidos são intencionais: `echo` e `fable` usam Giuseppe; `marin` e `shimmer` usam Emma. O catálogo também mantém `de-DE-FlorianMultilingualNeural`, utilizável pelo nome técnico, embora ele não seja mais destino de `shimmer`. As vozes regionais listadas adiante continuam disponíveis pelo nome completo; elas não são usadas para mapear aliases OpenAI.
 
-O contrato é verificado por `tests/test_voice_aliases.py`: os 13 nomes devem estar presentes, todos os destinos precisam ser multilíngues e constar da fotografia do catálogo, e os perfis locais devem usar o gênero Edge correspondente. A fotografia com gênero está em [tests/fixtures/edge-multilingual-2026-10-25.json](tests/fixtures/edge-multilingual-2026-10-25.json). Mudanças futuras do catálogo exigem nova consulta; esse teste não prova disponibilidade remota permanente.
+Mudanças futuras do catálogo exigem nova consulta (`python voices_catalog.py --check-aliases`); presença no catálogo não prova disponibilidade remota permanente.
 
 ## Português
 

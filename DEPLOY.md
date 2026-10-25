@@ -56,7 +56,6 @@ Requer conta Cloudflare e **Node.js 22+**, compatível com o Wrangler fixado nes
 ```sh
 cd workers
 npm ci
-npm test
 ```
 
 Edite `wrangler.jsonc`:

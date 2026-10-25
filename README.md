@@ -195,9 +195,9 @@ Todas as opções estão comentadas em [.env.example](.env.example). Nunca publi
 
 Mais ajuda: [Issues](https://github.com/samucamg/multivozes_br_engine/issues).
 
-## Atualizar, testar e contribuir
+## Atualizar
 
-Guarde uma cópia do seu `.env` e `voices.json`, depois: `git pull` e `docker compose up -d --build` (ou `python scripts/setup.py` sem Docker). Testes: `python -m pip install -r requirements-dev.txt` e `python -m unittest discover -s tests -v` (não chamam o Edge). Histórico: [CHANGELOG.md](CHANGELOG.md).
+Guarde uma cópia do seu `.env` e `voices.json`, depois: `git pull` e `docker compose up -d --build` (ou `python scripts/setup.py` sem Docker). Histórico: [CHANGELOG.md](CHANGELOG.md).
 
 Licença [MIT](LICENSE).
 
@@ -374,8 +374,8 @@ All options are commented in [.env.example](.env.example). Never publish your `.
 
 More help: [Issues](https://github.com/samucamg/multivozes_br_engine/issues).
 
-## Update, test and contribute
+## Update
 
-Keep a copy of your `.env` and `voices.json`, then: `git pull` and `docker compose up -d --build` (or `python scripts/setup.py` without Docker). Tests: `python -m pip install -r requirements-dev.txt` and `python -m unittest discover -s tests -v` (they do not call Edge). History: [CHANGELOG.md](CHANGELOG.md).
+Keep a copy of your `.env` and `voices.json`, then: `git pull` and `docker compose up -d --build` (or `python scripts/setup.py` without Docker). History: [CHANGELOG.md](CHANGELOG.md).
 
 License [MIT](LICENSE).

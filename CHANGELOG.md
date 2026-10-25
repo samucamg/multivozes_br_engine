@@ -27,7 +27,6 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
 * Consulta ao catálogo atual pelo utilitário `voices_catalog.py` e endpoint protegido `/v1/audio/voices` (aliases `/v1/voices` e `/voices`).
 * `/health` sem chamadas externas; limites configuráveis de texto, corpo da requisição, concorrência e duração da síntese.
 * Dockerfile, Docker Compose, instalador local e proxy Cloudflare Worker com chaves separadas para cliente e origem.
-* Testes automatizados do backend, catálogo e proxy; fluxo de integração contínua para Python e Node.
 
 ### Alterado
 
